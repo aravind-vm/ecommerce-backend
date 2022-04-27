@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,24 +56,28 @@ public class SkuController {
 
 
 	@PostMapping("")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	public ResponseEntity<Sku> addSku(@RequestBody @Valid SkuDTO skuDTO) {
 		return new ResponseEntity<Sku>(skuService.addSku(skuDTO), HttpStatus.CREATED);
 
 	}
 
 	@PostMapping("/createAll")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	public ResponseEntity<List<Sku>> addAllSku(@RequestBody @Valid List<SkuDTO> skuDTOs) {
 		return new ResponseEntity<List<Sku>>(skuService.addAllSku(skuDTOs), HttpStatus.CREATED);
 
 	}
 
 	@PutMapping("")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	public ResponseEntity<Sku> updateProduct(@RequestBody @Valid SkuDTO skuDTO) {
 		skuService.updateSku(skuDTO);
 		return null;
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	public ResponseEntity<String> deleteSku(@PathVariable Long id) {
 		skuService.deleteSku(id);
 		return null;

@@ -45,10 +45,8 @@ public class AppUser {
 	@Column(name = "last_updated")
 	@UpdateTimestamp
 	private Date lastUpdated;
-	private String role;
 
 	private String email;
-	private String password;
 	private Long mobile_number;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -117,14 +115,6 @@ public class AppUser {
 		return addresses;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public void addAddress(Address address) {
 		if (addresses.isEmpty()) {
 			addresses = new HashSet<Address>();
@@ -138,13 +128,7 @@ public class AppUser {
 		this.addresses = addresses;
 	}
 
-	public String getRole() {
-		return role;
-	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public Set<Order> getOrders() {
 		return orders;
@@ -162,7 +146,7 @@ public class AppUser {
 	@Override
 	public String toString() {
 		return "AppUser [id=" + id + ", name=" + name + ", active=" + active + ", dateCreated=" + dateCreated
-				+ ", lastUpdated=" + lastUpdated + ", role=" + role + ", email=" + email + ", password=" + password
+				+ ", lastUpdated=" + lastUpdated + ", email=" + email
 				+ ", mobile_number=" + mobile_number + ", orders=" + orders + ", addresses=" + addresses + "]";
 	}
 

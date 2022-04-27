@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,7 @@ public class ProductCategoryController {
 	private ProductCategoryService productCategoryService;
 
 	@GetMapping("")
+
 	public ResponseEntity<List<ProductCategory>> getAllProductCategories() {
 
 		return ResponseEntity.ok(productCategoryService.getAllProductCategories());
@@ -55,6 +57,7 @@ public class ProductCategoryController {
 
 
 	@PostMapping("")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	public ResponseEntity<ProductCategory> addProductCategory(@RequestBody ProductCategory productCategory) {
 
 		return new ResponseEntity<ProductCategory>(productCategoryService.addProductCategory(productCategory),
@@ -62,6 +65,7 @@ public class ProductCategoryController {
 	}
 
 	@PutMapping("")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	public ResponseEntity<ProductCategory> updateProductCategory(@RequestBody ProductCategory productCategory) {
 
 		return new ResponseEntity<ProductCategory>(productCategoryService.addProductCategory(productCategory),
@@ -69,6 +73,7 @@ public class ProductCategoryController {
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 	public ResponseEntity<String> deleteProductCategory(@PathVariable Long id) {
 
 		return ResponseEntity.ok(productCategoryService.deleteProductCategory(id));

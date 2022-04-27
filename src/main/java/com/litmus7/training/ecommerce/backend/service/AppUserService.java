@@ -13,4 +13,6 @@ public interface AppUserService {
 
 	AppUser getUser(Long id);
 
+	public UserDTO getUserById(Long id);
+
 }

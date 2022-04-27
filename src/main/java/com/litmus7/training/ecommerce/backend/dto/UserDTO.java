@@ -9,6 +9,15 @@ public class UserDTO {
 	private String password;
 	private Long mobile_number;
 	private Address address;
+	private String accessToken;
+
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
 
 	public Long getId() {
 		return id;
@@ -66,7 +75,7 @@ public class UserDTO {
 	@Override
 	public String toString() {
 		return "UserDTO [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", mobile_number=" + mobile_number + ", address=" + address + "]";
+				+ ", mobile_number=" + mobile_number + ", address=" + address + ", accessToken=" + accessToken + "]";
 	}
 
 
